@@ -45,6 +45,30 @@ abstract class Base implements iAbstractController
     $this->view->$method($arguments[0] ? $arguments : false);
   }
   
+  public function loadViewRegistries()
+  {
+    if(is_null($this->view))
+    {
+      $register = \ActionController\Registry\Register::getInstance();
+      $this->view = (new \ActionController\Factory\ViewFactory)->newInstance();
+      $this->view->setRegistries(
+        new \ActionController\Registry\TemplateRegistry($register->viewMap),
+        new \ActionCOntroller\Registry\TemplateRegistry($register->templateMap)
+      );
+    }
+    return $this->view;
+  }
+  
+  public function render( $name, $data = array() )
+  {
+    if(is_null($this->view))
+    {
+      $this->loadViewRegistries();
+    }
+    $this->view->setView($name);
+    echo $this->view->__invoke($data);
+  }
+  
   public function filter( $action, $type = 'Before', $namespace = '\\ActionController\\Filter\\')
   {
     $filter_data = null;
