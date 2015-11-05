@@ -30,7 +30,7 @@ abstract class Base implements iAbstractController
   {
     return $this->render;
   }
-
+  
   public function __call( $method, array $arguments)
   {
     if(is_null($this->view))
@@ -38,6 +38,50 @@ abstract class Base implements iAbstractController
       $this->view = (new \ActionController\Factory\ViewFactory)->newInstance();
     }
     $this->view->$method($arguments[0] ? $arguments : false);
+  }
+  
+  public function filter( $action, $type = 'Before', $namespace = '\\ActionController\\Filter\\')
+  {
+    $filter_data = null;
+    switch($type)
+    {
+      case 'Before':
+        $filter_data = $this::$before_filter;
+        break;
+      default:
+        
+    }
+    $results = \ActionController\Filter\FilterFactory::newInstance($type,$namespace)->filter(
+      $action, $filter_data
+    );
+
+    $this->execute_filter_actions($results);
+    
+  }
+  
+  public function getFilter( $filter_type )
+  {
+    switch($filter_type)
+    {
+      case 'Before':
+        return $this::$before_filter;
+      default:
+        return null;
+    }
+  }
+  
+  protected function redirect_to( $url, $replace = true, $redirect_code = 301, $content_type = 'text/html')
+  {
+    header('Content-Type: '.$content_type);
+    header('Location: '.$url, $replace, $redirect_code);
+  }
+  
+  private function execute_filter_actions( $actions )
+  {
+    foreach($actions as $action)
+    {
+      $this->$action();
+    }
   }
   
   public function __set( $name, $value)
