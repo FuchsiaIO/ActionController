@@ -29,6 +29,10 @@ abstract class Base implements iAbstractController
   
   public function &getRenderer()
   {
+    if(is_null($this->render))
+    {
+      $this->render = new \ActionController\Response\Render;
+    }
     return $this->render;
   }
   
