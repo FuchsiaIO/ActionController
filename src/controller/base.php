@@ -6,6 +6,7 @@ abstract class Base implements iAbstractController
 {
   public $view = null;
   public $render;
+  public static $before_filter = array();
   protected $data = array();
   
   public function __construct(){}
