@@ -8,7 +8,7 @@ class BeforeFilter implements iFilter
   private $filter_actions = array();
   private $filter_method;
   
-  public function filter( $action, array $filters )
+  public function filter( $action, $filters )
   {
     $this->action = $action;
     
