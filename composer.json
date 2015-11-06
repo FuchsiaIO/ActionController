@@ -1,4 +1,5 @@
 {
+  "minimum-stability": "dev",
   "name": "FuchsiaIO/ActionController",
   "type": "library",
   "description": "A Controller-View Implementation.",
@@ -17,7 +18,7 @@
     }
   ],
   "require": {
-    "mthaml/mthaml": "dev-master"
+    "mthaml/mthaml": "dev-master@dev"
   },
   "extra": {
     "branch-alias": {
