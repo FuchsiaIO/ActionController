@@ -10,6 +10,15 @@
       "email": "andeb2804@gmail.com"
     }
   ],
+  "repositories": [
+    {
+      "url": "https://github.com/arnaud-lb/MtHaml",
+      "type": "git"
+    }
+  ],
+  "require": {
+    "mthaml/mthaml": "dev-master"
+  },
   "extra": {
     "branch-alias": {
       "dev-nightly": "master"

@@ -74,7 +74,7 @@ abstract class Base
     $this->content = $content;
   }
   
-  protected function getContent()
+  public function getContent()
   {
     return $this->content;
   }

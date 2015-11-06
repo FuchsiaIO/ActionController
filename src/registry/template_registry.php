@@ -28,8 +28,19 @@ class TemplateRegistry
         {
           throw new \ActionController\Exception\TemplateNotFound('Unable to load view: '.$__FILE__);
         }
-    
-        require $__FILE__;
+        
+        if(USE_HAML)
+        {
+          $haml = new \MtHaml\Environment('php');
+          $hamlExecutor = new \MtHaml\Support\Php\Executor($haml, array(
+              'cache' => HAML_CACHE_PATH,
+          ));
+          $hamlExecutor->display($__FILE__, $__VARS__);
+        }
+        else
+        {
+          require $__FILE__;
+        }
       };
     }
     $this->map[$name] = $spec;

@@ -22,8 +22,10 @@ class Concrete extends Base
   
   protected function render($name, $vars = array())
   {
+    $vars['this'] = $this;
     ob_start();
     $this->getTemplate($name)->__invoke($vars);
     return ob_get_clean();
   }
+  
 }

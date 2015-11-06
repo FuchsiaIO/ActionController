@@ -9,3 +9,16 @@ define( 'ACTION_CONTROLLER', dirname(__FILE__) );
  * @const ACTION_CONTROLLER_NAMESPACE The package namespace.
  */ 
 define( 'ACTION_CONTROLLER_NAMESPACE', 'ActionController' );
+
+/**
+ * @const USE_HAML use haml preprocessor?
+ */ 
+if(!defined('USE_HAML'))
+{
+  define('USE_HAML', false);
+}
+
+if(!defined('HAML_CACHE_PATH'))
+{
+  define('HAML_CACHE_PATH', ACTION_CONTROLLER.'/.haml')
+}
