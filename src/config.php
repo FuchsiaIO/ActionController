@@ -20,5 +20,5 @@ if(!defined('USE_HAML'))
 
 if(!defined('HAML_CACHE_PATH'))
 {
-  define('HAML_CACHE_PATH', ACTION_CONTROLLER.'/.haml')
+  define('HAML_CACHE_PATH', ACTION_CONTROLLER.'/.haml');
 }
