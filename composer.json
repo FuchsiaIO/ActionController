@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "mthaml/mthaml": "dev-master@dev"
+    "mthaml/mthaml": "@dev"
   },
   "extra": {
     "branch-alias": {
