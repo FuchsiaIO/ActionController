@@ -1,7 +1,5 @@
 <?php
 
-require_once 'vendor/autoload.php';
-
 /**
  * Action Controller Autoloader
  *
@@ -14,6 +12,9 @@ require_once 'vendor/autoload.php';
  */
    
 require_once 'src/config.php';
+
+if(USE_HAML)
+  require_once 'haml/lib/MtHaml/Autoloader.php';
 
 spl_autoload_register(function($class){
   $class = strtolower(preg_replace('/\B([A-Z])/', '_$1', str_replace(ACTION_CONTROLLER_NAMESPACE, '', $class)));

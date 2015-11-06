@@ -18,11 +18,17 @@
     }
   ],
   "require": {
+    "mnsami/composer-custom-directory-installer": "1.0.*",
     "mthaml/mthaml": "@dev"
   },
   "extra": {
     "branch-alias": {
       "dev-nightly": "master"
+    }
+  },
+  "extra":{
+    "installer-paths":{
+      "./haml": ["mthaml/mthaml"]
     }
   }
 }
