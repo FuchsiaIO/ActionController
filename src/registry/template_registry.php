@@ -35,11 +35,12 @@ class TemplateRegistry
           $hamlExecutor = new \MtHaml\Support\Php\Executor($haml, array(
               'cache' => HAML_CACHE_PATH,
           ));
-          $hamlExecutor->display($__FILE__, $__VARS__);
+          return $hamlExecutor->display($__FILE__, $__VARS__);
         }
         else
         {
-          require $__FILE__;
+          $content = require $__FILE__;
+          return $content;
         }
       };
     }
