@@ -1,13 +1,40 @@
 <?php
-
+  
+/**
+ * Before Action Filter
+ */
 namespace ActionController\Filter;
 
+/**
+* Before Action Filter
+*
+* Executes actions against the controller before a specified request is processed
+*
+* @since        v0.0.1
+* @version      v0.0.1
+* @package      ActionController
+* @subpackage   Filter
+* @author       Benjamin J. Anderson <andeb2804@gmail.com>
+*/
 class BeforeFilter implements iFilter
 {
+  /** @var string $action The action to apply filters to */
   private $action;
+  
+  /** @var array $filter_actions The generated list of actions to execute */
   private $filter_actions = array();
+  
+  /** @var string $filter_method The current method being processed */
   private $filter_method;
   
+  /**
+   * Filters an action against an array of available filters
+   *
+   * @since v0.0.1
+   * @param string $action The action to apply filters to
+   * @param array  $filters A filter List.
+   * @returns array A list of actions to be executed.
+   */
   public function filter( $action, $filters )
   {
     $this->action = $action;
@@ -23,6 +50,14 @@ class BeforeFilter implements iFilter
     return $this->filter_actions;
   }
   
+  /**
+   * Parses the filter list
+   *
+   * @since v0.0.1
+   * @param string $filter_type The type of filter - before|after
+   * @param array  $action_list A list of included filter-actions
+   * @returns bool $add         Execute the action
+   */
   private function filter_action_list( $filter_type, array $action_list, $add )
   {
     if(array_key_exists($filter_type, $action_list))
