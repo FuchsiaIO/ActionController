@@ -28,7 +28,7 @@
   },
   "extra":{
     "installer-paths":{
-      "./haml": ["mthaml/mthaml"]
+      "./vendor/haml": ["mthaml/mthaml"]
     }
   }
 }
