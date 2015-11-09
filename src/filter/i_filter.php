@@ -1,8 +1,28 @@
 <?php
-
+/**
+ * Filter Interface
+ */
 namespace ActionController\Filter;
 
+/**
+* Filter Interface
+*
+* Enforces that all Action Filters contain a filter action
+*
+* @since        v0.0.1
+* @version      v0.0.1
+* @package      ActionController
+* @subpackage   Filter
+* @author       Benjamin J. Anderson <andeb2804@gmail.com>
+*/
 interface iFilter
 {
+  /**
+   * Filters an action against an array of available filters
+   *
+   * @since v0.0.1
+   * @param string $action The action to apply filters to
+   * @param array  $filters A filter List.
+   */
   public function filter( $action, $filters);
 }

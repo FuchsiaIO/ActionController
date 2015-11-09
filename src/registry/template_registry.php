@@ -1,12 +1,32 @@
 <?php
-
+/**
+ * Template Registry
+ */
 namespace ActionController\Registry;
 
+/**
+* Template Registry
+*
+* Registers a template, constructs a closure wrapping the file path
+*
+* @since        v0.0.1
+* @version      v0.0.1
+* @package      ActionController
+* @subpackage   Registry
+* @author       Benjamin J. Anderson <andeb2804@gmail.com>
+*/
 class TemplateRegistry
 {
-
+  
+  /** @var array $map Template Registries */
   protected $map;
   
+  /**
+   * Constructs a new template registry
+   *
+   * @since v0.0.1
+   * @param array $map An array containing templates to register
+   */
   public function __construct( $map = array() )
   {
     foreach ($map as $name => $spec) 
@@ -15,6 +35,13 @@ class TemplateRegistry
     }
   }
   
+  /**
+   * Registers a template
+   *
+   * @since v0.0.1
+   * @param string $name An alias to the template
+   * @param string $spec The file template path
+   */
   public function set( $name, $spec )
   {
     if (is_string($spec)) 
@@ -47,11 +74,23 @@ class TemplateRegistry
     $this->map[$name] = $spec;
   }
   
+  /**
+   * Validates that a template exists in the template map
+   *
+   * @since v0.0.1
+   * @param string $name A template alias
+   */
   public function has( $name )
   {
     return isset($this->map[$name]);
   }
   
+  /**
+   * Gets a template from the template map
+   *
+   * @since v0.0.1
+   * @param string $name A template alias
+   */
   public function get( $name )
   {
     if(isset($this->map[$name]))
