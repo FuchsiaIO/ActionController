@@ -1,10 +1,31 @@
 <?php
-  
+/**
+ * Filter Factory
+ */
 namespace ActionController\Filter;  
 
+/**
+* Filter Factory Class
+*
+* Responsible for constructing different types of Action Filters
+*
+* @since        v0.0.1
+* @version      v0.0.1
+* @package      ActionController
+* @subpackage   Filter
+* @author       Benjamin J. Anderson <andeb2804@gmail.com>
+*/
 class FilterFactory
 {
-  public static function newInstance( $type, $namespace)
+  /**
+   * Constructs a new action filter
+   *
+   * @since v0.0.1
+   * @param string $type      The type of filter.
+   * @param string $namespace The namespace of the filter.
+   * @return ActionController\iFilter A new filter
+   */
+  public static function newInstance( $type, $namespace )
   {
     $class = $namespace.$type.'Filter';
     return new $class();

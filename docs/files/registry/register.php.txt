@@ -1,13 +1,34 @@
 <?php
 
+/**
+ * Register -- Caches values throughout the execution of a controller action.
+ */
 namespace ActionController\Registry;
 
+/**
+* Register Class
+*
+* Provides an interface for Responses, Action Filters, and View Rendering.
+*
+* @since        v0.0.1
+* @version      v0.0.1
+* @package      ActionController
+* @subpackage   Registry
+* @author       Benjamin J. Anderson <andeb2804@gmail.com>
+*/
 class Register 
 {
-  
+  /** @var ActionController\Registry\Register $instance The Register instance */
   private static $instance;
+  
+  /** @var array $attachments Any values to be cached */
   private $attachments = array();
   
+  /**
+   * Creates and returns a new instance of ActionController\Registry\Register
+   *
+   * @since v0.0.1
+   */
   public static function getInstance()
   {
     if (!isset(self::$instance)) 
@@ -17,7 +38,14 @@ class Register
     return self::$instance;
   }
   
-  public function attach( $element, $alias)
+  /**
+   * Attaches a value to the register to cache.
+   *
+   * @since v0.0.1
+   * @param mixed  $element A value to pass to the register
+   * @param string $alias   The alias of the value
+   */
+  public function attach( $element, $alias )
   {
     $this->attachments[$alias] = $element;
   }
