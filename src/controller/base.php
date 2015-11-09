@@ -18,7 +18,7 @@ namespace ActionController\Controller;
 */
 abstract class Base implements iAbstractController
 {
-  /** @var ActionController\View\Base $view The view associated with a controllers action to be rendered. */
+  /** @var ActionView\View\Base $view The view associated with a controllers action to be rendered. */
   public $view = null;
   
   /** @var ActionController\Response\Render $render A controllers response parser and validator. */
@@ -91,7 +91,7 @@ abstract class Base implements iAbstractController
   {
     if(is_null($this->view))
     {
-      $this->view = (new \ActionController\Factory\ViewFactory)->newInstance();
+      $this->view = (new \ActionView\Factory\ViewFactory)->newInstance();
     }
     $this->view->$method($arguments[0] ? $arguments : false);
   }
@@ -100,17 +100,17 @@ abstract class Base implements iAbstractController
    * Loads the template registries into the current view
    *
    * @since v0.0.1
-   * @return ActionController\View\Concrete The current view
+   * @return ActionView\View\Concrete The current view
    */
   public function loadViewRegistries()
   {
     if(is_null($this->view))
     {
       $register = \ActionController\Registry\Register::getInstance();
-      $this->view = (new \ActionController\Factory\ViewFactory)->newInstance();
+      $this->view = (new \ActionView\Factory\ViewFactory)->newInstance();
       $this->view->setRegistries(
-        new \ActionController\Registry\TemplateRegistry($register->viewMap),
-        new \ActionCOntroller\Registry\TemplateRegistry($register->templateMap)
+        new \ActionView\Registry\TemplateRegistry($register->viewMap),
+        new \ActionView\Registry\TemplateRegistry($register->templateMap)
       );
     }
     return $this->view;
@@ -120,6 +120,7 @@ abstract class Base implements iAbstractController
    * Renders a view from the registries
    *
    * @since v0.0.1
+   * @deprecated deprecated since version v0.0.2 -- view methods are executed via __call
    * @param string $name The view to render
    * @param array  $data Data to pass to the view
    * @returns string A rendered view content

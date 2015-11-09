@@ -74,9 +74,9 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
   
   public function testGetView()
   {
-    $this->mock_controller->view = (new \ActionController\Factory\ViewFactory)->newInstance();
-    $this->assertInstanceOf('\ActionController\View\Concrete', $this->mock_controller->view,
-      "Controller view is not an instance of \ActionController\View\Concrete"
+    $this->mock_controller->view = (new \ActionView\Factory\ViewFactory)->newInstance();
+    $this->assertInstanceOf('\ActionView\View\Concrete', $this->mock_controller->view,
+      "Controller view is not an instance of \ActionView\View\Concrete"
     );
   }
     

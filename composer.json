@@ -15,11 +15,16 @@
     {
       "url": "https://github.com/arnaud-lb/MtHaml",
       "type": "git"
+    },
+    {
+      "url": "https://github.com/FuchsiaIO/ActionView",
+      "type": "git"
     }
   ],
   "require": {
     "mnsami/composer-custom-directory-installer": "1.0.*",
-    "mthaml/mthaml": "@dev"
+    "mthaml/mthaml": "@dev",
+    "FuchsiaIO/ActionView": "dev-master"
   },
   "extra": {
     "branch-alias": {
@@ -28,7 +33,8 @@
   },
   "extra":{
     "installer-paths":{
-      "./vendor/haml": ["mthaml/mthaml"]
+      "./vendor/action_view/vendor/haml": ["mthaml/mthaml"],
+      "./vendor/action_view": ["FuchsiaIO/ActionView"]
     }
   }
 }

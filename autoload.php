@@ -10,11 +10,9 @@
  * @since 1.0.0
  * @version v1.0.1
  */
-   
+ 
 require_once 'src/config.php';
-
-if(USE_HAML)
-  require_once 'vendor/haml/lib/MtHaml/Autoloader.php';
+require_once 'vendor/action_view/autoload.php';
 
 spl_autoload_register(function($class){
   $class = strtolower(preg_replace('/\B([A-Z])/', '_$1', str_replace(ACTION_CONTROLLER_NAMESPACE, '', $class)));
