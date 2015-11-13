@@ -12,7 +12,8 @@
  */
  
 require_once 'src/config.php';
-require_once dirname(__FILE__).'/vendor/action_view/autoload.php';
+if(file_exists(dirname(__FILE__).'/vendor/action_view/autoload.php'))
+  require_once dirname(__FILE__).'/vendor/action_view/autoload.php';
 
 spl_autoload_register(function($class){
   $class = strtolower(preg_replace('/\B([A-Z])/', '_$1', str_replace(ACTION_CONTROLLER_NAMESPACE, '', $class)));
