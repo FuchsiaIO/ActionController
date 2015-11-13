@@ -77,5 +77,11 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
     $this->mock_controller->setView('index.index');
     $this->assertSame($this->mock_controller->getView(), 'index.index');
   }
+
+  public function testGetSetTemplate()
+  {
+    $this->mock_controller->setTemplate('master');
+    $this->assertSame($this->mock_controller->getTemplate(), 'master');
+  }
     
 }

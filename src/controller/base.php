@@ -20,7 +20,10 @@ abstract class Base implements iAbstractController
 {
   /** @var string $view The view associated with a controllers action to be rendered. */
   private $view = null;
-  
+
+  /** @var string $template The template associated with a controllers action to be rendered. */
+  private $template = null;
+    
   /** @var ActionController\Response\Render $render A controllers response parser and validator. */
   public $render;
   
@@ -107,6 +110,28 @@ abstract class Base implements iAbstractController
   public function getView()
   {
     return $this->view;
+  }
+  
+  /**
+   * Sets the template for the controller to instantiate
+   *
+   * @param string $alias The template alias.
+   * @since v0.0.3
+   */  
+  public function setTemplate( $alias )
+  {
+    $this->template = $alias;
+  }
+  
+  /**
+   * Returns the template alias to be instantiated
+   *
+   * @since v0.0.1
+   * @return string The template alias
+   */
+  public function getTemplate()
+  {
+    return $this->template;
   }
   
   /**
