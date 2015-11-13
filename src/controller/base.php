@@ -29,6 +29,9 @@ abstract class Base implements iAbstractController
   
   /** @var array $before_filter Action filters to be executed before a request is served through the controller */
   public static $before_filter = array();
+
+  /** @var array $after_filter Action filters to be executed after a request is served through the controller */
+  public static $after_filter = array();
   
   /** @var array $data Class variables to be passed to the associated view. */
   protected $data = array();
@@ -150,6 +153,9 @@ abstract class Base implements iAbstractController
       case 'Before':
         $filter_data = $this::$before_filter;
         break;
+      case 'After':
+        $filter_data = $this::$after_filter;
+        break;        
       default:
         
     }
@@ -174,6 +180,9 @@ abstract class Base implements iAbstractController
     {
       case 'Before':
         return $this::$before_filter;
+      case 'After':
+      
+        $filter_data = $this::$after_filter;
       default:
         return null;
     }
