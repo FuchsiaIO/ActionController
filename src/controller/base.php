@@ -18,8 +18,8 @@ namespace ActionController\Controller;
 */
 abstract class Base implements iAbstractController
 {
-  /** @var ActionView\View\Base $view The view associated with a controllers action to be rendered. */
-  public $view = null;
+  /** @var string $view The view associated with a controllers action to be rendered. */
+  private $view = null;
   
   /** @var ActionController\Response\Render $render A controllers response parser and validator. */
   public $render;
@@ -87,52 +87,26 @@ abstract class Base implements iAbstractController
     return $this->render;
   }
   
-  public function __call( $method, array $arguments)
+  /**
+   * Sets the view for the controller to instantiate
+   *
+   * @param string $alias The view alias.
+   * @since v0.0.3
+   */  
+  public function setView( $alias )
   {
-    if(is_null($this->view))
-    {
-      $this->view = (new \ActionView\Factory\ViewFactory)->newInstance();
-    }
-    $this->view->$method($arguments[0] ? $arguments : false);
+    $this->view = $alias;
   }
   
   /**
-   * Loads the template registries into the current view
+   * Returns the view alias to be instantiated
    *
    * @since v0.0.1
-   * @return ActionView\View\Concrete The current view
+   * @return string The view alias
    */
-  public function loadViewRegistries()
+  public function getView()
   {
-    if(is_null($this->view))
-    {
-      $register = \ActionController\Registry\Register::getInstance();
-      $this->view = (new \ActionView\Factory\ViewFactory)->newInstance();
-      $this->view->setRegistries(
-        new \ActionView\Registry\TemplateRegistry($register->viewMap),
-        new \ActionView\Registry\TemplateRegistry($register->templateMap)
-      );
-    }
     return $this->view;
-  }
-  
-  /**
-   * Renders a view from the registries
-   *
-   * @since v0.0.1
-   * @deprecated deprecated since version v0.0.2 -- view methods are executed via __call
-   * @param string $name The view to render
-   * @param array  $data Data to pass to the view
-   * @returns string A rendered view content
-   */
-  public function render( $name, $data = array() )
-  {
-    if(is_null($this->view))
-    {
-      $this->loadViewRegistries();
-    }
-    $this->view->setView($name);
-    return $this->view->__invoke($data);
   }
   
   /**
